@@ -1,0 +1,28 @@
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: calublog-ui-latest
+  labels:
+    name: calublogui
+    version: latest
+    visualize: "true"
+spec:
+  replicas: 2
+  selector:
+    name: calublogui
+    version: latest
+  template:
+    metadata:
+      labels:
+        name: calublogui
+        version: latest
+        uses: redis
+        visualize: "true"
+    spec:
+      containers:
+       - name: calublogui
+         image: gcr.io/your_gcp_project_name/kub-calublog-ui:0.0.1-SNAPSHOT
+         imagePullPolicy: Always
+         ports:
+          - name: http
+            containerPort: 8080

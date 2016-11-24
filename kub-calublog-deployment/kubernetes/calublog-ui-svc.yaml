@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: calublogui
+  labels:
+    name: calublogui
+    visualize: "true"
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    name: calublogui

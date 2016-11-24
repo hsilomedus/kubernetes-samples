@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels: 
+    name: mysql
+    visualize: "true"
+spec: 
+  containers: 
+    - resources:
+        limits :
+          cpu: 0.5
+      image: mysql:5.6
+      name: mysql
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          # change this
+          value: root
+        - name: MYSQL_DATABASE
+          value: calublogsvc
+      ports: 
+        - containerPort: 3306
+          name: mysql

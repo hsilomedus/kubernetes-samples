@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: calublogsvc
+  labels:
+    name: calublogsvc
+    visualize: "true"
+spec:
+  ports:
+    - port: 8081
+      targetPort: 8081
+  selector:
+    name: calublogservice

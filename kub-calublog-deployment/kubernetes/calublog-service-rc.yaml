@@ -1,0 +1,28 @@
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: calublog-service-latest
+  labels:
+    name: calublogservice
+    version: latest
+    visualize: "true"
+spec:
+  replicas: 2
+  selector:
+    name: calublogservice
+    version: latest
+  template:
+    metadata:
+      labels:
+        name: calublogservice
+        version: latest
+        uses: mysql
+        visualize: "true"
+    spec:
+      containers:
+       - name: calublogservice
+         image: gcr.io/your_gcp_project_name/kub-calublog-service:0.0.1-SNAPSHOT
+         imagePullPolicy: Always
+         ports:
+          - name: http
+            containerPort: 8081
